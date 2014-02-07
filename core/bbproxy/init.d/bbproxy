@@ -1,0 +1,46 @@
+#!/bin/sh
+
+###
+### BBProxy startup script
+###
+
+# chkconfig:           2345 80 20
+# description:         BBProxy daemon
+
+### BEGIN INIT INFO
+# Provides:            bbproxy
+# Required-Start:      $remote_fs $syslog
+# Required-Stop:       $remote_fs $syslog
+# Should-Start:
+# Should-Stop:
+# Default-Start:       2 3 4 5
+# Default-Stop:        0 1 6
+# Short-Description:   BBProxy daemon
+# Description:         BBProxy daemon
+### END INIT INFO
+
+PROG=/opt/bbproxy/bbproxy
+
+case "$1" in
+   start)
+      setsid "$PROG" >/dev/null 2>&1 &
+      ;;
+   stop)
+      killall -q "$PROG" >/dev/null 2>&1
+      ;;
+   restart)
+      killall -q "$PROG" >/dev/null 2>&1
+      sleep 1
+      setsid "$PROG" >/dev/null 2>&1 &
+      ;;
+   reload)
+      killall -1 "$PROG" >/dev/null 2>&1
+      ;;
+   status)
+      pidof "$PROG"
+      ;;
+   *)
+      echo $"Usage: $0 {start|stop|restart|reload|status}"
+esac
+
+exit

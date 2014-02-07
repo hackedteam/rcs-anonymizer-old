@@ -1,0 +1,9 @@
+
+ - Tunable files in etc/:
+
+version       Program version (yyyymmddss)
+proxyport     Bind port for proxy connections (default 80)
+nexthop       Next hop in chain (host:port), or dash (-) to disable the proxy
+managerport   Bind port for manager connections (default 443)
+certificate   Certificate file for authentication in PEM format (required)
+signature     Signature file for authentication in ASCII format (required)
